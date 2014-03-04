@@ -32,10 +32,6 @@ public:
     void guiEvent(ofxUIEventArgs &e);
     float dim;
     
-    //FOLLOW ACTIONS
-    void setNextScene(int _scene, int _actionType);
-    void triggerScene();
-    
     //COUNTS
     int numOfVolumes;
     int numOfPercentages;

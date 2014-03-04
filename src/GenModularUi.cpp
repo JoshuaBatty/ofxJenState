@@ -76,9 +76,9 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
             gui->addWidgetDown( new ofxUISpacer(gui->getRect()->getWidth(), 110));
             gui->addWidgetDown( new ofxUISpacer(120, ofGetHeight()));
 
-            gui->addWidgetRight(new ofxUIToggleMatrix(dim*3, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
+            gui->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
         } else {
-            gui->addWidgetRight(new ofxUIToggleMatrix(dim*3, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
+            gui->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
         }
         
 
@@ -279,20 +279,3 @@ void GenModularUi::guiEvent(ofxUIEventArgs &e)
     
 }
 
-//--------------------------------------------------------------
-// Sets the type of behaviour that the follow actions each scene will control
-// Scene = the specific scene to alter its behaviour
-// ActionType = the generative bahviour of that scene
-//
-// 0 = No trigger behaviour
-// 1 = Trigger previous scene
-// 2 = Trigger next scene
-// 3 = Trigger first scene
-// 4 = Trigger last scene
-// 5 = Trigger any scene
-// 6 = Trigger other scene
-// 7 = Trigger specific scene
-
-void GenModularUi::setNextScene(int _scene, int _actionType){
-    
-}

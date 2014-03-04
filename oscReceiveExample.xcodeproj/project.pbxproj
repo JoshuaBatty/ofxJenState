@@ -14,6 +14,10 @@
 		0383672918C1879A005CEC72 /* ofUnicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0383671F18C1879A005CEC72 /* ofUnicode.cpp */; };
 		0383672A18C1879A005CEC72 /* ofUTF8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0383672118C1879A005CEC72 /* ofUTF8.cpp */; };
 		038367FF18C214C5005CEC72 /* GenPack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 038367FD18C214C5005CEC72 /* GenPack.cpp */; };
+		0391BB1D18C5E4EA002D62D1 /* GenUIFollowActions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0391BB1B18C5E4EA002D62D1 /* GenUIFollowActions.cpp */; };
+		0391BB2718C5E525002D62D1 /* ofxCDMEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0391BB2018C5E525002D62D1 /* ofxCDMEvent.cpp */; };
+		0391BB2818C5E525002D62D1 /* ofxClickDownFader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0391BB2218C5E525002D62D1 /* ofxClickDownFader.cpp */; };
+		0391BB2918C5E525002D62D1 /* ofxClickDownMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0391BB2418C5E525002D62D1 /* ofxClickDownMenu.cpp */; };
 		03A8AC8C18C2B680004DA209 /* GenVar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A8AC8A18C2B680004DA209 /* GenVar.cpp */; };
 		03AFA45E18C077C500300800 /* OscReceiveGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03AFA45C18C077C500300800 /* OscReceiveGen.cpp */; };
 		03AFA4D518C0A63F00300800 /* ofxUI2DGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03AFA46B18C0A63F00300800 /* ofxUI2DGraph.cpp */; };
@@ -165,6 +169,16 @@
 		0383672218C1879A005CEC72 /* ofUTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofUTF8.h; sourceTree = "<group>"; };
 		038367FD18C214C5005CEC72 /* GenPack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenPack.cpp; sourceTree = "<group>"; };
 		038367FE18C214C5005CEC72 /* GenPack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenPack.h; sourceTree = "<group>"; };
+		0391BB1B18C5E4EA002D62D1 /* GenUIFollowActions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenUIFollowActions.cpp; sourceTree = "<group>"; };
+		0391BB1C18C5E4EA002D62D1 /* GenUIFollowActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenUIFollowActions.h; sourceTree = "<group>"; };
+		0391BB1F18C5E525002D62D1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0391BB2018C5E525002D62D1 /* ofxCDMEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCDMEvent.cpp; sourceTree = "<group>"; };
+		0391BB2118C5E525002D62D1 /* ofxCDMEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCDMEvent.h; sourceTree = "<group>"; };
+		0391BB2218C5E525002D62D1 /* ofxClickDownFader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxClickDownFader.cpp; sourceTree = "<group>"; };
+		0391BB2318C5E525002D62D1 /* ofxClickDownFader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxClickDownFader.h; sourceTree = "<group>"; };
+		0391BB2418C5E525002D62D1 /* ofxClickDownMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxClickDownMenu.cpp; sourceTree = "<group>"; };
+		0391BB2518C5E525002D62D1 /* ofxClickDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxClickDownMenu.h; sourceTree = "<group>"; };
+		0391BB2618C5E525002D62D1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		03A8AC8A18C2B680004DA209 /* GenVar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenVar.cpp; sourceTree = "<group>"; };
 		03A8AC8B18C2B680004DA209 /* GenVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenVar.h; sourceTree = "<group>"; };
 		03AFA45C18C077C500300800 /* OscReceiveGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscReceiveGen.cpp; sourceTree = "<group>"; };
@@ -517,6 +531,22 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		0391BB1E18C5E525002D62D1 /* ofxClickDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				0391BB1F18C5E525002D62D1 /* .gitignore */,
+				0391BB2018C5E525002D62D1 /* ofxCDMEvent.cpp */,
+				0391BB2118C5E525002D62D1 /* ofxCDMEvent.h */,
+				0391BB2218C5E525002D62D1 /* ofxClickDownFader.cpp */,
+				0391BB2318C5E525002D62D1 /* ofxClickDownFader.h */,
+				0391BB2418C5E525002D62D1 /* ofxClickDownMenu.cpp */,
+				0391BB2518C5E525002D62D1 /* ofxClickDownMenu.h */,
+				0391BB2618C5E525002D62D1 /* README.md */,
+			);
+			name = ofxClickDownMenu;
+			path = ../../../addons/ofxClickDownMenu;
+			sourceTree = "<group>";
+		};
 		03AFA46518C0A63F00300800 /* ofxUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -709,6 +739,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				0391BB1E18C5E525002D62D1 /* ofxClickDownMenu */,
 				038366F018C1879A005CEC72 /* ofxFontStash */,
 				0383670618C1879A005CEC72 /* ofxUnicode */,
 				03AFA46518C0A63F00300800 /* ofxUI */,
@@ -792,6 +823,8 @@
 				03AFA45D18C077C500300800 /* OscReceiveGen.h */,
 				03AFA50718C0A69C00300800 /* GenModularUi.cpp */,
 				03AFA50818C0A69C00300800 /* GenModularUi.h */,
+				0391BB1B18C5E4EA002D62D1 /* GenUIFollowActions.cpp */,
+				0391BB1C18C5E4EA002D62D1 /* GenUIFollowActions.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -972,11 +1005,13 @@
 				03AFA50518C0A63F00300800 /* tinyxmlparser.cpp in Sources */,
 				03AFA4D518C0A63F00300800 /* ofxUI2DGraph.cpp in Sources */,
 				03AFA4DB18C0A63F00300800 /* ofxUICircleSlider.cpp in Sources */,
+				0391BB2718C5E525002D62D1 /* ofxCDMEvent.cpp in Sources */,
 				03AFA4DA18C0A63F00300800 /* ofxUICanvas.cpp in Sources */,
 				03AFA4E518C0A63F00300800 /* ofxUIImageSampler.cpp in Sources */,
 				03AFA4E618C0A63F00300800 /* ofxUIImageSlider.cpp in Sources */,
 				03AFA4F518C0A63F00300800 /* ofxUISlider.cpp in Sources */,
 				0383672A18C1879A005CEC72 /* ofUTF8.cpp in Sources */,
+				0391BB1D18C5E4EA002D62D1 /* GenUIFollowActions.cpp in Sources */,
 				03AFA50218C0A63F00300800 /* ofxUIWidgetWithLabel.cpp in Sources */,
 				03AFA4EF18C0A63F00300800 /* ofxUINumberDialer.cpp in Sources */,
 				03AFA4DC18C0A63F00300800 /* ofxUIDragableLabelButton.cpp in Sources */,
@@ -988,6 +1023,7 @@
 				0383672618C1879A005CEC72 /* stb_truetype.c in Sources */,
 				640279ee111671bd026cb013 /* ofxOscReceiver.cpp in Sources */,
 				03AFA50118C0A63F00300800 /* ofxUIWidget.cpp in Sources */,
+				0391BB2918C5E525002D62D1 /* ofxClickDownMenu.cpp in Sources */,
 				5864ad82e20f15536d054ea3 /* ofxOscMessage.cpp in Sources */,
 				03AFA4E418C0A63F00300800 /* ofxUIImageButton.cpp in Sources */,
 				03AFA4E718C0A63F00300800 /* ofxUIImageToggle.cpp in Sources */,
@@ -1028,6 +1064,7 @@
 				03AFA4E118C0A63F00300800 /* ofxUIFPS.cpp in Sources */,
 				c4782ecc372420ace0615b74 /* OscPrintReceivedElements.cpp in Sources */,
 				879a251454401bc0b6e4f238 /* OscTypes.cpp in Sources */,
+				0391BB2818C5E525002D62D1 /* ofxClickDownFader.cpp in Sources */,
 				03AFA4DD18C0A63F00300800 /* ofxUIDropDownList.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -101,6 +101,8 @@ void OscReceiveGen::setup(vector<GenVar*> _vars){
     }
     
     genModUI.setup(&vars, genInputs);
+    
+    genFollowActions.setup();
 }
 
 //--------------------------------------------------------------
@@ -441,5 +443,5 @@ void OscReceiveGen::draw(){
     ofSetColor(255);
     
     genModUI.draw();
-    
+    genFollowActions.draw();
 }

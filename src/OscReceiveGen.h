@@ -12,6 +12,7 @@
 #include "ofxOsc.h"
 #include "GenPack.h"
 #include "GenModularUi.h"
+#include "GenUIFollowActions.h"
 
 // listen on port 12345
 #define PORT 12345
@@ -79,4 +80,6 @@ public:
     
     //GUI
     GenModularUi genModUI;
+    
+    GenUIFollowActions genFollowActions;
 };
