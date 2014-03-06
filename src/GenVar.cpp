@@ -9,7 +9,7 @@
 #include "GenVar.h"
 
 //--------------------------------------------------------------
-GenVar::GenVar(string _name, bool _useVol, bool _usePerc, bool _useIsPlaying)
+GenVar::GenVar(string _name, bool _useVol, bool _usePerc, bool _useIsPlaying, float _min, float _max)
 {
     volume = NULL;
     percentage = NULL;
@@ -17,15 +17,16 @@ GenVar::GenVar(string _name, bool _useVol, bool _usePerc, bool _useIsPlaying)
     volID = -1;
     percID = -1;
     playID = -1;
-    setup(_name, _useVol, _usePerc, _useIsPlaying);
+    setup(_name, _useVol, _usePerc, _useIsPlaying, _min, _max);
 }
 
 //--------------------------------------------------------------
 
-void GenVar::setup(string _name, bool _useVol, bool _usePerc, bool _useIsPlaying)
+void GenVar::setup(string _name, bool _useVol, bool _usePerc, bool _useIsPlaying, float _min, float _max)
 {
     name = _name;
     setUsage(_useVol, _usePerc, _useIsPlaying);
+    setRange(_min, _max);
 }
 
 //--------------------------------------------------------------
@@ -56,11 +57,23 @@ void GenVar::setUseIsPlaying(bool _useIsPlaying)
 
 //--------------------------------------------------------------
 
+float GenVar::getVolume()
+{
+    return ofMap(*volume, 0.0f, 1.0f, min, max);
+}
 
+float GenVar::getPercentage()
+{
+    return ofMap(*percentage, 0.0f, 1.0f, min, max);
+}
 
 //--------------------------------------------------------------
 
-
+void GenVar::setRange(float _min, float _max)
+{
+    min = _min;
+    max = _max;
+}
 
 //--------------------------------------------------------------
 

@@ -124,7 +124,6 @@ void OscReceiveGen::update(){
                 else {
                     genInputs[i]->getPercentage = m.getArgAsFloat(1);
                     genInputs[i]->getVolume = m.getArgAsFloat(2);
-                    genInputs[i]->setRange(0.5,0.75);
                 }
                 
             }

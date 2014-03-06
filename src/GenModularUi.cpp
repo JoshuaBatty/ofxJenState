@@ -72,6 +72,8 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     cout << totalNumOfCols << endl;
     for(int i=0; i < totalNumOfCols; i++){
         
+        ofxUINumberDialer *nd;
+        
         if(i == 0){
             gui->addWidgetDown( new ofxUISpacer(gui->getRect()->getWidth(), 110));
             gui->addWidgetDown( new ofxUISpacer(120, ofGetHeight()));
@@ -79,10 +81,13 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
             gui->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
         } else {
             gui->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
+            nd = gui->addNumberDialer("min" + ofToString(i+1), -10.0f, 10.0f, 0.0f, 2);
+            
         }
         
-
-//        gui->addWidgetDown(new ofxUINumberDialer(-1.0, 100.0, 0.0, 1, "min" + ofToString(i+1), 100));
+       //gui->addWidgetDown(new ofxUINumberDialer(500, 500, 0.0, 1.0, 0.0, 2, "HELP", 3));
+       // gui->addWidgetDown(new ofxUINumberDialer(-1.0, 100.0, 0.0, 1, "min" + ofToString(i+1), 100));
+        
 
     //    gui->addWidgetDown(new ofxUINumberDialer("min" + ofToString(i+1), -1.0, 100.0, 1));
 //        gui2->addNumberDialer("DIALER", -10000, 10000, 5000, 3);

@@ -83,7 +83,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var2(0,0)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -128,7 +128,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var2(0,9)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -156,6 +156,11 @@
     <Value>0</Value>
 </Widget>
 <Widget>
+    <Kind>8</Kind>
+    <Name>min2</Name>
+    <Value>-3.680000544</Value>
+</Widget>
+<Widget>
     <Kind>2</Kind>
     <Name>Var3(0,0)</Name>
     <Value>0</Value>
@@ -163,7 +168,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var3(0,1)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -173,7 +178,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var3(0,3)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -231,6 +236,11 @@
     <Value>0</Value>
 </Widget>
 <Widget>
+    <Kind>8</Kind>
+    <Name>min3</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
     <Kind>2</Kind>
     <Name>Var4(0,0)</Name>
     <Value>0</Value>
@@ -243,7 +253,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var4(0,2)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -273,7 +283,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var4(0,8)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -304,4 +314,9 @@
     <Kind>2</Kind>
     <Name>Var4(0,14)</Name>
     <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>8</Kind>
+    <Name>min4</Name>
+    <Value>0.000000000</Value>
 </Widget>

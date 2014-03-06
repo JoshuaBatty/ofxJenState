@@ -3,9 +3,9 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
-    speed.setUsage(true, true, false); // Use Volume, Use Percentage.
-    cunt.setUsage(false, true, false); // Use Percentage.
-    ae.setUsage(true, false, false); // Use Volume.
+    speed.setup("SPEED", true, true, false, 0.5, 1.0); // Use Volume, Use Percentage.
+    cunt.setup("CUNT", false, true, false, 0.1, 0.7); // Use Percentage.
+    ae.setup("AEBITCHZ", true, false, false, 0.5f, 200.0f); // Use Volume.
     
     vars.reserve(3);
     vars.push_back(&speed);
@@ -42,18 +42,18 @@ void testApp::draw(){
     
     myVar = 0.0f;
     if (speed.volume) {
-        myVar = *speed.volume;
+        myVar = speed.getVolume();
     }
     ofCircle(50, ofGetHeight()-50, myVar * 25);
     
     if (speed.percentage) {
-        ofCircle(50 * 2, ofGetHeight()-50, *speed.percentage * 25);
+        ofCircle(50 * 2, ofGetHeight()-50, speed.getPercentage() * 25);
     }
     if (cunt.percentage) {
-        ofCircle(50 * 3, ofGetHeight()-50, *cunt.percentage * 25);
+        ofCircle(50 * 3, ofGetHeight()-50, cunt.getPercentage() * 25);
     }
     if (ae.volume) {
-        ofCircle(50 * 4, ofGetHeight()-50, *ae.volume * 25);
+        ofCircle(50 * 4, ofGetHeight()-50, ae.getVolume() * 25);
     }
     
     oscGen.draw();

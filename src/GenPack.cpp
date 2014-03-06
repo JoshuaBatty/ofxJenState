@@ -83,9 +83,7 @@ void GenPack::setUseIsPlaying(bool _useIsPlaying)
 }
 
 //--------------------------------------------------------------
-void GenPack::setRange(float _min, float _max){
-    getVolume = ofMap(getVolume, 0.0, 1.0, _min, _max);
-}
+
 
 //--------------------------------------------------------------
 
