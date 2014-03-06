@@ -22,6 +22,8 @@ public:
     void setUsePercentage(bool _usePerc);
     void setUseIsPlaying(bool _useIsPlaying);
     void setRange(float _min, float _max);
+    void setMin(float _min);
+    void setMax(float _max);
     
     float getVolume();
     float getPercentage();

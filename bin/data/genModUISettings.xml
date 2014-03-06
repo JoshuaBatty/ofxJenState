@@ -2,13 +2,13 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>538.000000000</XPosition>
-    <YPosition>1.000000000</YPosition>
+    <XPosition>487.000000000</XPosition>
+    <YPosition>-1.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>2</Kind>
     <Name>Var1(0,0)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -68,7 +68,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var1(0,12)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -83,7 +83,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var2(0,0)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -138,7 +138,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var2(0,11)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -156,11 +156,6 @@
     <Value>0</Value>
 </Widget>
 <Widget>
-    <Kind>8</Kind>
-    <Name>min2</Name>
-    <Value>-3.680000544</Value>
-</Widget>
-<Widget>
     <Kind>2</Kind>
     <Name>Var3(0,0)</Name>
     <Value>0</Value>
@@ -168,7 +163,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var3(0,1)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -208,7 +203,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var3(0,9)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -236,11 +231,6 @@
     <Value>0</Value>
 </Widget>
 <Widget>
-    <Kind>8</Kind>
-    <Name>min3</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
     <Kind>2</Kind>
     <Name>Var4(0,0)</Name>
     <Value>0</Value>
@@ -253,7 +243,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var4(0,2)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -303,7 +293,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var4(0,12)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -316,7 +306,42 @@
     <Value>0</Value>
 </Widget>
 <Widget>
-    <Kind>8</Kind>
+    <Kind>12</Kind>
+    <Name>min1</Name>
+    <Value>1.8</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
+    <Name>min2</Name>
+    <Value>0.1</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
+    <Name>min3</Name>
+    <Value>0.0</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
     <Name>min4</Name>
-    <Value>0.000000000</Value>
+    <Value>0.0</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
+    <Name>max1</Name>
+    <Value>0.54</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
+    <Name>max2</Name>
+    <Value>0.9</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
+    <Name>max3</Name>
+    <Value>0.5</Value>
+</Widget>
+<Widget>
+    <Kind>12</Kind>
+    <Name>max4</Name>
+    <Value>0.3</Value>
 </Widget>

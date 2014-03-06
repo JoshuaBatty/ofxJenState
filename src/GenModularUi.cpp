@@ -72,8 +72,6 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     cout << totalNumOfCols << endl;
     for(int i=0; i < totalNumOfCols; i++){
         
-        ofxUINumberDialer *nd;
-        
         if(i == 0){
             gui->addWidgetDown( new ofxUISpacer(gui->getRect()->getWidth(), 110));
             gui->addWidgetDown( new ofxUISpacer(120, ofGetHeight()));
@@ -81,19 +79,28 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
             gui->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
         } else {
             gui->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
-            nd = gui->addNumberDialer("min" + ofToString(i+1), -10.0f, 10.0f, 0.0f, 2);
-            
         }
-        
-       //gui->addWidgetDown(new ofxUINumberDialer(500, 500, 0.0, 1.0, 0.0, 2, "HELP", 3));
-       // gui->addWidgetDown(new ofxUINumberDialer(-1.0, 100.0, 0.0, 1, "min" + ofToString(i+1), 100));
-        
-
-    //    gui->addWidgetDown(new ofxUINumberDialer("min" + ofToString(i+1), -1.0, 100.0, 1));
-//        gui2->addNumberDialer("DIALER", -10000, 10000, 5000, 3);
-
         ofxUIToggleMatrix* mtx = (ofxUIToggleMatrix *) gui->getWidget("Var" + ofToString(i+1));
         mtx->setAllowMultiple(false);
+    }
+    
+    // MINIMUM UI's
+    for(int i=0; i < totalNumOfCols; i++){
+        if(i == 0){
+            gui->addWidgetDown( new ofxUISpacer(120, ofGetHeight()));
+            gui->addWidgetRight(new ofxUITextInput("min" + ofToString(i+1), "0.0", dim));
+        } else {
+            gui->addWidgetRight(new ofxUITextInput("min" + ofToString(i+1), "0.0", dim));
+        }
+    }
+    // MAXIMUM UI's
+    for(int i=0; i < totalNumOfCols; i++){
+        if(i == 0){
+            gui->addWidgetDown( new ofxUISpacer(120, ofGetHeight()));
+            gui->addWidgetRight(new ofxUITextInput("max" + ofToString(i+1), "1.0", dim));
+        } else {
+            gui->addWidgetRight(new ofxUITextInput("max" + ofToString(i+1), "1.0", dim));
+        }
     }
 
 
@@ -238,6 +245,48 @@ void GenModularUi::guiEvent(ofxUIEventArgs &e)
     cout << " | GenInp PercID = " << genIn->percentageID << " | y = " << y << endl;
     cout << " | GenInp PlayID = " << genIn->isPlayingID << " | y = " << y << endl; */
     
+    //MINIMUM AND MAXIMUM INPUTS
+    for(int i=0; i < totalNumOfCols; i++){
+        if(name == "min" + ofToString(i+1)){
+            ofxUITextInput *t = (ofxUITextInput *) e.widget;
+            float min = ofToFloat(t->getTextString());
+            
+            for (int j=0; j < vars->size(); j++) {
+                if (vars->at(j)->volID == i) {
+                    vars->at(j)->setMin(min);
+                }
+                else if (vars->at(j)->percID == i) {
+                    vars->at(j)->setMin(min);
+                }
+                else if (vars->at(j)->playID == i) {
+                    vars->at(j)->setMin(min);
+                }
+            }
+            
+            
+            cout << "min val" + ofToString(i) + " = " << min << endl;
+        }
+        if(name == "max" + ofToString(i+1)){
+            ofxUITextInput *t = (ofxUITextInput *) e.widget;
+            float max = ofToFloat(t->getTextString());
+            
+            for (int j=0; j < vars->size(); j++) {
+                if (vars->at(j)->volID == i) {
+                    vars->at(j)->setMax(max);
+                }
+                else if (vars->at(j)->percID == i) {
+                    vars->at(j)->setMax(max);
+                }
+                else if (vars->at(j)->playID == i) {
+                    vars->at(j)->setMax(max);
+                }
+            }
+            
+            cout << "max val" + ofToString(i) + " = " << max << endl;
+        }
+    }
+    
+        
     for(int x = 0; x < totalNumOfCols; x++){
         for(int y=0; y < NUM_OF_GENINPUTS; y++){
             if(name == "Var" + ofToString(x+1) + "(" + ofToString(0) + "," + ofToString(y) + ")")
