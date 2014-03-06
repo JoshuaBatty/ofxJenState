@@ -28,9 +28,12 @@ public:
     void update();
     
     //GUI
-    ofxUISuperCanvas *gui;
+    ofxUISuperCanvas *guiModular;
+    ofxUISuperCanvas *guiPresets;
     void guiEvent(ofxUIEventArgs &e);
     float dim;
+    int textOffsetHeight;
+    int textOffsetWidth;
     
     //COUNTS
     int numOfVolumes;

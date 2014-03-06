@@ -11,7 +11,8 @@
 //--------------------------------------------------------------
 
 GenModularUi::GenModularUi(){
-    gui = NULL;
+    guiModular = NULL;
+    guiPresets = NULL;
 }
 
 GenModularUi::GenModularUi(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
@@ -20,9 +21,13 @@ GenModularUi::GenModularUi(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
 
 
 GenModularUi::~GenModularUi(){
-    if (gui) {
-        gui->saveSettings("genModUISettings.xml");
-        delete gui;
+    if (guiModular) {
+        guiModular->saveSettings("GUI/Modular/genModUISettings.xml");
+        delete guiModular;
+    }
+    if(guiPresets){
+        guiPresets->saveSettings("GUI/Presets/genPresetUISettings.xml");
+        delete guiPresets;
     }
 }
 
@@ -40,17 +45,6 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     
     //FONT
     font.setup("Vera.ttf"); //load verdana font, set lineHeight to be 130%
-
-    //GUI
-    dim = 32;
-	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
-    float length = 320-xInit;
-	
-    gui = new ofxUISuperCanvas("GEN MODULAR", ofGetWidth()/2, 0, 450, ofGetHeight());
-    gui->addWidgetDown(new ofxUIFPS(OFX_UI_FONT_MEDIUM));
-    
-    gui->setGlobalButtonDimension(24);
-    gui->addSpacer();
     
     for (int i = 0; i < vars->size(); i++) {
         if (vars->at(i)->bUseVolume == true) {
@@ -69,45 +63,73 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
             totalNumOfCols++;
         }
     }
+    
+    //GUI
+    textOffsetWidth = 110;
+    textOffsetHeight = 130;
+    dim = 42;
+	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
+    float length = 320-xInit;
+    
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////// MODULAR /////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
+    
+    guiModular = new ofxUISuperCanvas("GEN MODULAR", ofGetWidth()/2, 0, textOffsetWidth + ((totalNumOfCols+1) * dim), ofGetHeight());
+    guiModular->addWidgetDown(new ofxUIFPS(OFX_UI_FONT_MEDIUM));
+    
+    guiModular->setGlobalButtonDimension(dim);
+    guiModular->addSpacer();
+    
     cout << totalNumOfCols << endl;
     for(int i=0; i < totalNumOfCols; i++){
         
         if(i == 0){
-            gui->addWidgetDown( new ofxUISpacer(gui->getRect()->getWidth(), 110));
-            gui->addWidgetDown( new ofxUISpacer(120, ofGetHeight()));
+            guiModular->addWidgetDown( new ofxUISpacer(guiModular->getRect()->getWidth(), textOffsetHeight));
+            guiModular->addWidgetDown( new ofxUISpacer(textOffsetWidth, ofGetHeight()));
 
-            gui->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
+            guiModular->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
         } else {
-            gui->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
+            guiModular->addWidgetRight(new ofxUIToggleMatrix(dim, dim, NUM_OF_GENINPUTS, 1, "Var" + ofToString(i+1)));
         }
-        ofxUIToggleMatrix* mtx = (ofxUIToggleMatrix *) gui->getWidget("Var" + ofToString(i+1));
+        ofxUIToggleMatrix* mtx = (ofxUIToggleMatrix *) guiModular->getWidget("Var" + ofToString(i+1));
         mtx->setAllowMultiple(false);
     }
     
     // MINIMUM UI's
     for(int i=0; i < totalNumOfCols; i++){
         if(i == 0){
-            gui->addWidgetDown( new ofxUISpacer(120, ofGetHeight()));
-            gui->addWidgetRight(new ofxUITextInput("min" + ofToString(i+1), "0.0", dim));
+            guiModular->addWidgetDown( new ofxUISpacer(textOffsetWidth, ofGetHeight()));
+            guiModular->addWidgetRight(new ofxUITextInput("min" + ofToString(i+1), "0.0", dim));
         } else {
-            gui->addWidgetRight(new ofxUITextInput("min" + ofToString(i+1), "0.0", dim));
+            guiModular->addWidgetRight(new ofxUITextInput("min" + ofToString(i+1), "0.0", dim));
         }
     }
     // MAXIMUM UI's
     for(int i=0; i < totalNumOfCols; i++){
         if(i == 0){
-            gui->addWidgetDown( new ofxUISpacer(120, ofGetHeight()));
-            gui->addWidgetRight(new ofxUITextInput("max" + ofToString(i+1), "1.0", dim));
+            guiModular->addWidgetDown( new ofxUISpacer(textOffsetWidth, ofGetHeight()));
+            guiModular->addWidgetRight(new ofxUITextInput("max" + ofToString(i+1), "1.0", dim));
         } else {
-            gui->addWidgetRight(new ofxUITextInput("max" + ofToString(i+1), "1.0", dim));
+            guiModular->addWidgetRight(new ofxUITextInput("max" + ofToString(i+1), "1.0", dim));
         }
     }
 
+    guiModular->addSpacer();
 
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////// PRESETS /////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+    guiPresets = new ofxUISuperCanvas("MODULAR PRESETS", ofGetWidth()/2, 0, textOffsetWidth + ((totalNumOfCols+1) * dim), ofGetHeight());
     
-    ofAddListener(gui->newGUIEvent,this,&GenModularUi::guiEvent);
+    guiPresets->addSpacer();
     
-    gui->loadSettings("genModUISettings.xml");
+    ofAddListener(guiModular->newGUIEvent,this,&GenModularUi::guiEvent);
+    ofAddListener(guiPresets->newGUIEvent,this,&GenModularUi::guiEvent);
+    
+    guiModular->loadSettings("GUI/Modular/genModUISettings.xml");
+    guiPresets->loadSettings("GUI/Presets/genPresetUISettings.xml");
 
 }
 
@@ -117,9 +139,10 @@ void GenModularUi::draw(){
     
     int fontSize = 16;
     int offset = 70;
+    int textOffsetWidth = 125;
     int offsetAmount = dim+2;
-    int xPos = gui->getRect()->getX()+10;
-    int yPos = gui->getRect()->getY();
+    int xPos = guiModular->getRect()->getX()+10;
+    int yPos = guiModular->getRect()->getY();
     
    // cout << "yPos = " << yPos << endl;
    // cout << "xPos = " << xPos << endl;
@@ -134,7 +157,7 @@ void GenModularUi::draw(){
         if (vars->at(i)->bUseVolume) {
             buf = vars->at(i)->name + "V";
             ofSetColor(255);
-            font.drawMultiLineColumn(buf, fontSize, xPos+130+offset, yPos+70, 1);
+            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1);
             offset += offsetAmount+4;
         }
         
@@ -142,7 +165,7 @@ void GenModularUi::draw(){
             buf = vars->at(i)->name + "P";
             //buf = vars->at(i)->address;
             ofSetColor(255);
-            font.drawMultiLineColumn(buf, fontSize, xPos+130+offset, yPos+70, 1);
+            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1);
             offset += offsetAmount+4;
         }
         
@@ -150,7 +173,7 @@ void GenModularUi::draw(){
             buf = vars->at(i)->name + "Pl";
             //buf = vars->at(i)->address;
             ofSetColor(255);
-            font.drawMultiLineColumn(buf, fontSize, xPos+130+offset, yPos+70, 1);
+            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1);
             offset += offsetAmount+4;
         }
         
@@ -161,70 +184,78 @@ void GenModularUi::draw(){
 
     offset = 70;
     offsetAmount = dim+3;
-    xPos = gui->getRect()->getX()+10;
-    yPos = gui->getRect()->getY();
+    xPos = guiModular->getRect()->getX()+10;
+    yPos = guiModular->getRect()->getY();
     
 	//string buf;
     string buf;
 	buf = "Song Pos";
     ofSetColor(255);
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
     
     buf = "Part Pos:";
     offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
     
     buf = "Segment Pos";
     offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
-    
-    buf = "Kick Pos";
-    offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
-    
-    buf = "Snare Pos";
-    offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
-    
-    buf = "Ride Pos";
-    offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
-    
-    buf = "Ghost Pos";
-    offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
-    
-    buf = "Kick Volume";
-    offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
-    
-    buf = "Snare Volume";
-    offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
-    
-    buf = "Ride Volume";
-    offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
-    
-    buf = "Ghost Volume";
-    offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
     
     buf = "Bar Pos";
     offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
     
     buf = "Beat Pos";
     offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
     
     buf = "Quaver Pos";
     offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
     
     buf = "SemiQ Pos";
     offset += offsetAmount;
-	font.draw(buf,fontSize, xPos, yPos+offset+110);
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "Kick Pos";
+    offset += offsetAmount;
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "Snare Pos";
+    offset += offsetAmount;
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "Ride Pos";
+    offset += offsetAmount;
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "Ghost Pos";
+    offset += offsetAmount;
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "Kick Volume";
+    offset += offsetAmount;
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "Snare Volume";
+    offset += offsetAmount;
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "Ride Volume";
+    offset += offsetAmount;
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "Ghost Volume";
+    offset += offsetAmount;
+	font.draw(buf,fontSize, xPos, yPos+offset+textOffsetHeight);
+    
+    buf = "MIN";
+    offset += offsetAmount-14;
+	font.draw(buf,fontSize, xPos+50, yPos+offset+textOffsetHeight);
+    
+    buf = "MAX";
+    offset += offsetAmount-23;
+	font.draw(buf,fontSize, xPos+50, yPos+offset+textOffsetHeight);
     
 }
 

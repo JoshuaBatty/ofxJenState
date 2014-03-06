@@ -56,14 +56,14 @@ void OscReceiveGen::setup(vector<GenVar*> _vars){
     genInputs.push_back(&genSong);
     genInputs.push_back(&genPart);
     genInputs.push_back(&genSegment);
-    genInputs.push_back(&genKick);
-    genInputs.push_back(&genSnare);
-    genInputs.push_back(&genRide);
-    genInputs.push_back(&genGhost);
     genInputs.push_back(&genBar);
     genInputs.push_back(&genBeat);
     genInputs.push_back(&genQuaver);
     genInputs.push_back(&genSemiQ);
+    genInputs.push_back(&genKick);
+    genInputs.push_back(&genSnare);
+    genInputs.push_back(&genRide);
+    genInputs.push_back(&genGhost);
     
     totalNumOfInputs = 0;
     
