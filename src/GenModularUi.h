@@ -30,7 +30,10 @@ public:
     //GUI
     ofxUISuperCanvas *guiModular;
     ofxUISuperCanvas *guiPresets;
+    ofxUIDropDownList *ddl;
+    ofxUITextInput *text;
     void guiEvent(ofxUIEventArgs &e);
+    string newPresetName;
     float dim;
     int textOffsetHeight;
     int textOffsetWidth;

@@ -2,6 +2,41 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>859.000000000</XPosition>
-    <YPosition>0.000000000</YPosition>
+    <XPosition>858.000000000</XPosition>
+    <YPosition>2.000000000</YPosition>
 </Canvas>
+<Widget>
+    <Kind>12</Kind>
+    <Name>Preset Name</Name>
+    <Value>CUNT</Value>
+</Widget>
+<Widget>
+    <Kind>22</Kind>
+    <Name>PRESETS</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>INIT</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>CUNT</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>INITs</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>INITssf</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>INITssfa</Name>
+    <Value>0</Value>
+</Widget>

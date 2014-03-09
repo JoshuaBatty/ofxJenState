@@ -44,7 +44,8 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     totalNumOfCols = 0;
     
     //FONT
-    font.setup("Vera.ttf"); //load verdana font, set lineHeight to be 130%
+//    font.setup("Vera.ttf"); //load verdana font, set lineHeight to be 130%
+    font.setup("BebasNeue.ttf");
     
     for (int i = 0; i < vars->size(); i++) {
         if (vars->at(i)->bUseVolume == true) {
@@ -68,6 +69,7 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     textOffsetWidth = 110;
     textOffsetHeight = 130;
     dim = 42;
+    newPresetName = "INIT";
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
     float length = 320-xInit;
     
@@ -125,6 +127,20 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     
     guiPresets->addSpacer();
     
+
+    //text = guiPresets->addTextInput("Preset Name", "enter new preset name");
+    text = dynamic_cast<ofxUITextInput*>(guiPresets->addWidgetDown(new ofxUITextInput("Preset Name", "enter new preset name", 200)));
+    guiPresets->addWidgetRight(new ofxUIButton("Store", false, 30,18));
+    guiPresets->addWidgetDown(new ofxUIButton("Load", false, 115, 18));
+    guiPresets->addWidgetRight(new ofxUIButton("Delete", false, 115, 18));
+    
+    //Drop Down
+    vector<string> names;
+    names.push_back("INIT"); names.push_back("CUNT");
+//    guiPresets->addWidgetDown(new ofxUIDropDownList("PRESETS", names));
+    ddl = guiPresets->addDropDownList("PRESETS", names);
+    ddl->setAllowMultiple(false);
+    
     ofAddListener(guiModular->newGUIEvent,this,&GenModularUi::guiEvent);
     ofAddListener(guiPresets->newGUIEvent,this,&GenModularUi::guiEvent);
     
@@ -137,7 +153,7 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
 //--------------------------------------------------------------
 void GenModularUi::draw(){
     
-    int fontSize = 16;
+    int fontSize = 22;//16;
     int offset = 70;
     int textOffsetWidth = 125;
     int offsetAmount = dim+2;
@@ -275,6 +291,60 @@ void GenModularUi::guiEvent(ofxUIEventArgs &e)
     cout << " | GenInp VolID = " << genIn->volumeID << " | y = " << y << endl;
     cout << " | GenInp PercID = " << genIn->percentageID << " | y = " << y << endl;
     cout << " | GenInp PlayID = " << genIn->isPlayingID << " | y = " << y << endl; */
+    
+    //PRESET LOADING AND SAVING
+    if(name == "Preset Name"){
+        ofxUITextInput *t = (ofxUITextInput *) e.widget;
+        newPresetName = t->getTextString();
+    }
+    else if(name == "Store"){
+        ofxUIButton *b = (ofxUIButton *) e.widget;
+        
+        bool overwrite = false;
+        if(b->getValue() == 1){
+            for(int i = 0; i < ddl->getToggles().size(); i++){
+                if(text->getTextString() == ddl->getToggles()[i]->getName()){
+                    overwrite = true;
+                }
+                    
+            }
+            if (overwrite) {
+                // OVERWRITE HERE
+            } else {
+                ddl->addToggle(newPresetName);
+            }
+        }
+    }
+    /*
+    else if(name == "Load"){
+        ofxUIButton *b = (ofxUIButton *) e.widget;
+        if(b->getValue() == 1){
+            ddl->addToggle(newPresetName);
+        }
+    }
+    */
+    else if(name == "Delete"){
+        ofxUIButton *b = (ofxUIButton *) e.widget;
+        if(b->getValue() == 1){
+            cout << "sick" << endl;
+            for(int i = 0; i < ddl->getToggles().size(); i++){
+                if(text->getTextString() == ddl->getToggles()[i]->getName()){
+                    ddl->removeToggle(ddl->getToggles()[i]->getName());
+                }
+            }
+            
+        }
+    }
+
+    else if(name == "PRESETS"){
+        vector<ofxUIWidget *> &selected = ddl->getSelected();
+        for(int i = 0; i < selected.size(); i++)
+        {
+            cout << "SELECTED: " << selected[i]->getName() << endl;
+            text->setTextString(selected[i]->getName());
+        }
+    }
+    
     
     //MINIMUM AND MAXIMUM INPUTS
     for(int i=0; i < totalNumOfCols; i++){

@@ -5,7 +5,7 @@ void testApp::setup(){
     
     speed.setup("SPEED", true, true, false, 0.5, 1.0); // Use Volume, Use Percentage.
     cunt.setup("CUNT", false, true, false, 0.1, 0.7); // Use Percentage.
-    ae.setup("AEBITCHZ", true, false, false, 0.5f, 200.0f); // Use Volume.
+    ae.setup("AESLUT", true, false, false, 0.5f, 200.0f); // Use Volume.
     
     vars.reserve(3);
     vars.push_back(&speed);
