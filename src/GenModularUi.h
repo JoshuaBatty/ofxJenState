@@ -34,7 +34,6 @@ public:
     ofxUITextInput *text;
     void guiEvent(ofxUIEventArgs &e);
     string newPresetName;
-    int numPresets;
     float dim;
     int textOffsetHeight;
     int textOffsetWidth;
@@ -42,7 +41,7 @@ public:
     //Presets
     void initXMLpreset();
     void saveXMLpreset();
-    ofXml XMLpresetNames;
+    ofxXmlSettings XMLpresetNames;
     string xmlStructure;
     
     //COUNTS

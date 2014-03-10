@@ -2,13 +2,13 @@
     <Kind>40</Kind>
     <Name>OFX_UI_WIDGET_CANVAS</Name>
     <IsMinified>0</IsMinified>
-    <XPosition>858.000000000</XPosition>
+    <XPosition>864.000000000</XPosition>
     <YPosition>2.000000000</YPosition>
 </Canvas>
 <Widget>
     <Kind>12</Kind>
     <Name>Preset Name</Name>
-    <Value>CUNTa sdasdf ss ddasdas s</Value>
+    <Value></Value>
 </Widget>
 <Widget>
     <Kind>22</Kind>
@@ -19,9 +19,4 @@
     <Kind>17</Kind>
     <Name>INIT</Name>
     <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>17</Kind>
-    <Name>CUNT</Name>
-    <Value>1</Value>
 </Widget>
