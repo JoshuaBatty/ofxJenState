@@ -34,9 +34,16 @@ public:
     ofxUITextInput *text;
     void guiEvent(ofxUIEventArgs &e);
     string newPresetName;
+    int numPresets;
     float dim;
     int textOffsetHeight;
     int textOffsetWidth;
+    
+    //Presets
+    void initXMLpreset();
+    void saveXMLpreset();
+    ofXml XMLpresetNames;
+    string xmlStructure;
     
     //COUNTS
     int numOfVolumes;

@@ -8,7 +8,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var1(0,0)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -68,7 +68,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var1(0,12)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -93,7 +93,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var2(0,2)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -113,7 +113,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var2(0,6)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -178,12 +178,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var3(0,4)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>Var3(0,5)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -253,7 +253,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var4(0,4)</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -303,7 +303,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Var4(0,14)</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>12</Kind>
@@ -338,7 +338,7 @@
 <Widget>
     <Kind>12</Kind>
     <Name>max3</Name>
-    <Value>1.08</Value>
+    <Value>1.0</Value>
 </Widget>
 <Widget>
     <Kind>12</Kind>

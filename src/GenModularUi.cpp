@@ -29,6 +29,8 @@ GenModularUi::~GenModularUi(){
         guiPresets->saveSettings("GUI/Presets/genPresetUISettings.xml");
         delete guiPresets;
     }
+    
+    saveXMLpreset();
 }
 
 
@@ -131,12 +133,24 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     //text = guiPresets->addTextInput("Preset Name", "enter new preset name");
     text = dynamic_cast<ofxUITextInput*>(guiPresets->addWidgetDown(new ofxUITextInput("Preset Name", "enter new preset name", 200)));
     guiPresets->addWidgetRight(new ofxUIButton("Store", false, 30,18));
-    guiPresets->addWidgetDown(new ofxUIButton("Load", false, 115, 18));
-    guiPresets->addWidgetRight(new ofxUIButton("Delete", false, 115, 18));
+    guiPresets->addWidgetDown(new ofxUIButton("Load", false, 250, 35));
     
     //Drop Down
+    initXMLpreset();
+    
     vector<string> names;
     names.push_back("INIT"); names.push_back("CUNT");
+/*
+    numPresets = "load xml /numPresets";
+    
+    vector<string> names;
+    
+    for(int i = 0; i < numPresets; i++){
+        names.push_back(guiPresets->"xml.getName");
+    }
+ */
+ //   names.push_back("INIT"); names.push_back("CUNT");
+    
 //    guiPresets->addWidgetDown(new ofxUIDropDownList("PRESETS", names));
     ddl = guiPresets->addDropDownList("PRESETS", names);
     ddl->setAllowMultiple(false);
@@ -149,6 +163,97 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
 
 }
 
+//--------------------------------------------------------------
+void GenModularUi::initXMLpreset(){
+    
+    //XML
+    //   XML.clear();
+    
+    //   for(int i=0; i< 40; i++){
+    //       XML.addTag("TRACK");
+    //       xmlStructure = "<TRACK>\n";
+    //   }
+    
+    //lets see how many <STROKE> </STROKE> tags there are in the xml file
+//	int numTrackTags = XMLpresetNames.getNumTags("PRESET:NAME:COUNT");
+//	int numTrackTags = XMLpresetNames.getNumTags("NAME:COUNT");
+    
+//    numPresets = numTrackTags;
+
+    if(XMLpresetNames.load("GUI/Presets/genPresetNames.xml")){
+        
+    } else {
+        XMLpresetNames.addChild("NUM_PRESETS");
+        XMLpresetNames.setTo("NUM_PRESETS");
+    }
+
+    if(XMLpresetNames.exists("//NUM_PRESETS")) {
+        numPresets	= XMLpresetNames.getValue<int>("//NUM_PRESETS");
+    } else {
+        numPresets = 0;
+    }
+    
+    cout << "NUM PRESETS = " << numPresets << endl;
+/*
+    //if there is at least one <STROKE> tag we can read the list of points
+	//and then try and draw it as a line on the screen
+	if(numTrackTags > 0){
+        
+		//we push into the last STROKE tag
+		//this temporarirly treats the tag as
+		//the document root.
+		XMLpresetNames.pushTag("PRESET", numTrackTags-1);
+        
+        //we see how many points we have stored in <PT> tags
+        int numCountTags = XMLpresetNames.getNumTags("COUNT");
+        
+        if(numCountTags > 0){
+            
+            //We then read those x y values into our
+            //array - so that we can then draw the points as
+            //a line on the screen
+            
+            //we have only allocated a certan amount of space for our array
+            //so we don't want to read more than that amount of points
+            int totalToRead = MIN(numCountTags, numPresets);
+            
+            for(int i = 0; i < totalToRead; i++){
+                //the last argument of getValue can be used to specify
+                //which tag out of multiple tags you are refering to.
+                cout << " NAME amount = " << XMLpresetNames.getValue("NAME", 0, i) << endl;
+                cout << " COUNT amount = " << XMLpresetNames.getValue("COUNT", 0, i) << endl;
+                
+            }
+        }
+        
+		//this pops us out of the STROKE tag
+		//sets the root back to the xml document
+		XMLpresetNames.popTag();
+	}
+ */
+}
+
+//------------------------------------------------------------------------------
+void GenModularUi::saveXMLpreset(){
+    
+    /*
+    for(int i = 0; i < numPresets; i++){
+        if( XMLpresetNames.pushTag("PRESET", i)){
+            //        int tagTitleNum = XML.addTag("TITLE");
+            //        int tagCountNum = XML.addTag("COUNT");
+            XMLpresetNames.setValue("NAME", text->getTextString());
+            XMLpresetNames.setValue("COUNT", XMLpresetNames.getValue("COUNT",i) + numPresets);
+            numPresets = XMLpresetNames.getValue("COUNT",i);
+            XMLpresetNames.popTag();
+        }
+    }
+    
+    XMLpresetNames.saveFile("GUI/Presets/genPresetNames.xml");
+     */
+    
+    XMLpresetNames.setValue("//NUM_PRESETS", ofToString(numPresets));
+    XMLpresetNames.save("GUI/Presets/genPresetNames.xml");
+}
 
 //--------------------------------------------------------------
 void GenModularUi::draw(){
@@ -310,29 +415,24 @@ void GenModularUi::guiEvent(ofxUIEventArgs &e)
             }
             if (overwrite) {
                 // OVERWRITE HERE
+                guiModular->saveSettings("GUI/Presets/" + text->getTextString() + ".xml");
+                numPresets++;
             } else {
                 ddl->addToggle(newPresetName);
+                guiModular->saveSettings("GUI/Presets/" + text->getTextString() + ".xml");
+                numPresets++;
             }
         }
     }
-    /*
+    
     else if(name == "Load"){
         ofxUIButton *b = (ofxUIButton *) e.widget;
         if(b->getValue() == 1){
-            ddl->addToggle(newPresetName);
-        }
-    }
-    */
-    else if(name == "Delete"){
-        ofxUIButton *b = (ofxUIButton *) e.widget;
-        if(b->getValue() == 1){
-            cout << "sick" << endl;
             for(int i = 0; i < ddl->getToggles().size(); i++){
                 if(text->getTextString() == ddl->getToggles()[i]->getName()){
-                    ddl->removeToggle(ddl->getToggles()[i]->getName());
+                    guiModular->loadSettings("GUI/Presets/" + text->getTextString() + ".xml");
                 }
             }
-            
         }
     }
 
