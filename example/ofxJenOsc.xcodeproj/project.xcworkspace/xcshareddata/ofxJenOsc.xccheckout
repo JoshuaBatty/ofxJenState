@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CF4B1324-6B8D-434A-B2B1-B9D4AA71F5FE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ofxJenOsc</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>43995803E7D8866F15E5E7F11DCD505CD0D2225E</key>
+		<string>https://github.com/MindBuffer/ofxJenOsc.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>example/ofxJenOsc.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>43995803E7D8866F15E5E7F11DCD505CD0D2225E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/MindBuffer/ofxJenOsc.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>43995803E7D8866F15E5E7F11DCD505CD0D2225E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>43995803E7D8866F15E5E7F11DCD505CD0D2225E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxJenOsc</string>
+		</dict>
+	</array>
+</dict>
+</plist>
