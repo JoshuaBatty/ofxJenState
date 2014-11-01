@@ -1,15 +1,15 @@
-GenOSCInterface
-===============
+ofxJenOsc
+=========
 
-Control interface for receiving and manipulating OSC data sent from Gen
+A small addon with a nice interface for receiving OSC data on a separate thread.
 
 
 Required External Addons
-===============
-ofxClickDownMenu - https://github.com/loveandsheep/ofxClickDownMenu 
+========================
+[ofxClickDownMenu](https://github.com/loveandsheep/ofxClickDownMenu)
 
-ofxFontStash - https://github.com/armadillu/ofxFontStash
+[ofxFontStash](https://github.com/armadillu/ofxFontStash)
 
-ofxUnicode - https://github.com/bakercp/ofxUnicode
+[ofxUnicode](https://github.com/bakercp/ofxUnicode)
 
-ofxUI - https://github.com/rezaali/ofxUI
+[ofxUI](https://github.com/rezaali/ofxUI)
