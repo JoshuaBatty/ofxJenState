@@ -84,22 +84,30 @@ namespace ofxJenOsc {
         , totalNumOfNotes(_totalNumOfNotes) {
         }
         
-        RhythmType type;
+        const RhythmType type;
         Playhead playhead;
         unsigned int totalNumOfNotes;
         /// Stores only the currently playing notes.
         vector<Note> notes;
+
     };
     
     /// Represents the state of an Instrument.
     class Instrument {
     public:
-        
-        RhythmType type;
-        string name;
+
+        Instrument(RhythmType _type, string _name, unsigned int durationInTicks)
+        : type(_type)
+        , name(_name)
+        , playhead(durationInTicks) {
+        }
+
+        const RhythmType type;
+        const string name;
         Playhead playhead;
         float amp;
         float pan; /// -1.0 is far left, 0.0 is center and 1.0 is far right.
+
     };
 
     /// Represents the entire state of Jen. By calling `update`, the state will
@@ -113,14 +121,20 @@ namespace ofxJenOsc {
         
         void update();
 
+        const Playhead* getPlayhead(Measure measure);
         vector<const Playhead*> getPlayheads();
         vector<const Rhythm*> getRhythms();
         vector<const Rhythm*> getRhythmsOfType(RhythmType type);
+        vector<const Instrument*> getInstruments();
+        vector<const Instrument*> getInstrumentsOfType(RhythmType type);
 
     private:
+
         ofxOscReceiver oscReceiver;
         vector<Playhead> playheads;
         vector<Rhythm> rhythms;
+        vector<Instrument> instruments;
+
     };
 
 }
