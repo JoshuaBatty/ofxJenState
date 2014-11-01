@@ -37,6 +37,7 @@ public:
     float dim;
     int textOffsetHeight;
     int textOffsetWidth;
+    int numLines;
     
     //Presets
     void initXMLpreset();

@@ -1,5 +1,7 @@
 ofxOsc
+ofxXmlSettings
 ofxClickDownMenu
 ofxFontStash
+ofxJenOsc
 ofxUI
 ofxUnicode

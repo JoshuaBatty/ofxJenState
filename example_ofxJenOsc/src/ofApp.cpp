@@ -1,8 +1,8 @@
-#include "testApp.h"
+#include "ofApp.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
-    
+void ofApp::setup(){
+
     speed.setup("SPEED", true, true, false, 0.5, 1.0); // Use Volume, Use Percentage.
     cunt.setup("CUNT", false, true, false, 0.1, 0.7); // Use Percentage.
     ae.setup("AESLUT", true, false, false, 0.5f, 200.0f); // Use Volume.
@@ -13,23 +13,16 @@ void testApp::setup(){
     vars.push_back(&ae);
     
     oscGen.setup(vars);
-    
+
 }
 
 //--------------------------------------------------------------
-void testApp::exit(){
-}
-
-//--------------------------------------------------------------
-void testApp::update(){
-
+void ofApp::update(){
     oscGen.update();
-
 }
 
-
 //--------------------------------------------------------------
-void testApp::draw(){
+void ofApp::draw(){
 
     ofColor colorOne;
     ofColor colorTwo;
@@ -60,45 +53,46 @@ void testApp::draw(){
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
 
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y){
+void ofApp::mouseMoved(int x, int y ){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
-}
-
-//--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
+void ofApp::mouseReleased(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
+void ofApp::windowResized(int w, int h){
 
 }
 
 //--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){
+void ofApp::gotMessage(ofMessage msg){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }

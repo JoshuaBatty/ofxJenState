@@ -13,10 +13,12 @@
 GenModularUi::GenModularUi(){
     guiModular = NULL;
     guiPresets = NULL;
+    numLines = 1;
 }
 
 GenModularUi::GenModularUi(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     setup(_vars, _genInputs);
+    numLines = 1;
 }
 
 
@@ -46,6 +48,7 @@ void GenModularUi::setup(vector<GenVar*> *_vars, vector<GenPack*> _genInputs){
     numOfPercentages = 0;
     numOfIsPlayings = 0;
     totalNumOfCols = 0;
+    numLines = 1;
     
     //FONT
 //    font.setup("Vera.ttf"); //load verdana font, set lineHeight to be 130%
@@ -211,11 +214,11 @@ void GenModularUi::draw(){
     
     for(int i=0; i < vars->size(); i++){
         string buf;
-        
+
         if (vars->at(i)->bUseVolume) {
             buf = vars->at(i)->name + "V";
             ofSetColor(255);
-            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1);
+            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1, numLines);
             offset += offsetAmount+4;
         }
         
@@ -223,7 +226,7 @@ void GenModularUi::draw(){
             buf = vars->at(i)->name + "P";
             //buf = vars->at(i)->address;
             ofSetColor(255);
-            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1);
+            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1, numLines);
             offset += offsetAmount+4;
         }
         
@@ -231,7 +234,7 @@ void GenModularUi::draw(){
             buf = vars->at(i)->name + "Pl";
             //buf = vars->at(i)->address;
             ofSetColor(255);
-            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1);
+            font.drawMultiLineColumn(buf, fontSize, xPos+textOffsetWidth+offset, yPos+70, 1, numLines);
             offset += offsetAmount+4;
         }
         
