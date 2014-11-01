@@ -31,7 +31,7 @@ void GenPack::drawPosition(int _x, int _y){
     float barHeight = 8;
     
 	ofSetColor(255);
-    
+
     // the background to the progress bar
     ofSetColor(100);
     ofFill();
