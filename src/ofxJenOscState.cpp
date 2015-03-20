@@ -10,7 +10,7 @@
 
 using namespace ofxJenOsc;
 
-double Playhead::percentage() {
+double Playhead::percentage() const{
     if (durationInTicks > 0) {
         return (double)positionInTicks / (double)durationInTicks;
     } else {
@@ -24,16 +24,16 @@ void State::update() {
 		oscReceiver.getNextMessage(&m);
         
         // Use messages to update current state here...
-        
+
     }
 }
 
-inline const Playhead* State::getPlayhead(Measure measure) {
+const Playhead* State::getPlayhead(Measure measure) {
     const Playhead* playhead = &playheads[measure];
     return playhead;
 }
 
-inline vector<const Playhead*> State::getPlayheads() {
+vector<const Playhead*> State::getPlayheads() {
     vector<const Playhead*> vec;
     vec.reserve(playheads.size());
     for (int i = 0; i < playheads.size(); i++) {
@@ -43,7 +43,7 @@ inline vector<const Playhead*> State::getPlayheads() {
     return vec;
 }
 
-inline vector<const Rhythm*> State::getRhythms() {
+vector<const Rhythm*> State::getRhythms() {
     vector<const Rhythm*> vec;
     vec.reserve(rhythms.size());
     for (int i = 0; i < rhythms.size(); i++) {
@@ -53,7 +53,7 @@ inline vector<const Rhythm*> State::getRhythms() {
     return vec;
 }
 
-inline vector<const Rhythm*> State::getRhythmsOfType(RhythmType type) {
+vector<const Rhythm*> State::getRhythmsOfType(RhythmType type) {
     vector<const Rhythm*> vec;
     vec.reserve(rhythms.size());
     for (int i = 0; i < rhythms.size(); i++) {
@@ -65,7 +65,7 @@ inline vector<const Rhythm*> State::getRhythmsOfType(RhythmType type) {
     return vec;
 }
 
-inline vector<const Instrument*> State::getInstruments() {
+vector<const Instrument*> State::getInstruments() {
     vector<const Instrument*> vec;
     vec.reserve(instruments.size());
     for (int i = 0; i < instruments.size(); i++) {
@@ -75,7 +75,7 @@ inline vector<const Instrument*> State::getInstruments() {
     return vec;
 }
 
-inline vector<const Instrument*> State::getInstrumentsOfType(RhythmType type) {
+vector<const Instrument*> State::getInstrumentsOfType(RhythmType type) {
     vector<const Instrument*> vec;
     vec.reserve(instruments.size());
     for (int i = 0; i < instruments.size(); i++) {

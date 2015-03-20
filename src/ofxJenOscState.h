@@ -38,7 +38,7 @@ namespace ofxJenOsc {
         }
         
         /// Return the position of the playhead within the duration as a percentage.
-        double percentage();
+        double percentage() const;
 
         unsigned int durationInTicks;
         unsigned int positionInTicks;

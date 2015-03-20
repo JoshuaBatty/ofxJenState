@@ -3,15 +3,21 @@
 #include "ofMain.h"
 #include "ofxJenOscState.h"
 
+using namespace ofxJenOsc;
+
 class ofApp : public ofBaseApp{
     
 public:
 
-    ofApp(){}
+    ofApp():
+    myKick(Kick, "KICK", 1000)
+    {}
 
 	void setup();
 	void update();
 	void draw();
+    
+    void drawInstrument(const Instrument* instrument, int x, int y);
 
 	void keyPressed(int key);
 	void keyReleased(int key);
@@ -23,6 +29,8 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-    ofxJenOsc::State jenState;
+    State jenState;
+    
+    Instrument myKick;
 
 };
