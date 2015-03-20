@@ -108,7 +108,7 @@ void ofApp::drawInstrument(const Instrument* instrument, int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::drawPlayheads(int x, int y){
-    int w = 150; // Width of module UI
+    int w = 160; // Width of module UI
     int h = 235; // Height of module UI
     
     int uvWidth = 130; // Width of UV meter
@@ -149,12 +149,24 @@ void ofApp::drawPlayheads(int x, int y){
     ofLine(x, y+25, x+w, y+25);
     
     for(int i = 0; i < jenState.getPlayheads().size(); i++){
+        int phrasePerc = fmod(uvWidth * (time*(1+pow(i,2.0))),uvWidth-10);
+        
         ofSetColor(uvBgColor);
-        ofRect(x+10, y+initOffset+(offsetMultiplier*i), uvWidth, uvHeight);
+        ofRect(x+10, y+initOffset+(offsetMultiplier*i), uvWidth-10, uvHeight);
         
         ofSetColor(uvBarColor);
-        ofRect(x+10, y+initOffset+(offsetMultiplier*i), fmod(uvWidth * (time*(1+pow(i,2.0))),uvWidth), uvHeight);
+        ofRect(x+10, y+initOffset+(offsetMultiplier*i), phrasePerc, uvHeight);
 
+        if(phrasePerc < 1+(i*3)){
+            ofSetColor(ofColor::pink);
+            ofFill();
+        } else {
+            ofSetColor(255,255,0,100);
+            ofNoFill();
+        }
+        ofCircle(x+(w-15), y+(initOffset+10)+(offsetMultiplier*i), 5);
+        ofFill();
+        
         ofSetColor(0);
         ofDrawBitmapString(playheads[i], x+35, y+(initOffset+15)+(offsetMultiplier*i));
     }
