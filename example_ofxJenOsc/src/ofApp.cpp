@@ -34,6 +34,11 @@ void ofApp::update(){
 }
 
 //--------------------------------------------------------------
+void ofApp::drawInstrumentsInfo(vector<const Instrument*> instruments){
+    int totalNumInstrumentsInSong = instruments.size();
+}
+
+//--------------------------------------------------------------
 void ofApp::drawInstrument(const Instrument* instrument, int x, int y){
     int w = 150; // Width of module UI
     int h = 105; // Height of module UI
@@ -41,7 +46,8 @@ void ofApp::drawInstrument(const Instrument* instrument, int x, int y){
     int uvWidth = 130; // Width of UV meter
     int uvHeight = 20; // Height of UV meter
     
-    ofColor uvBgColor = ofColor(ofColor::lightBlue);
+    ofColor uvBgColor = ofColor(ofColor::lightGoldenRodYellow);
+    ofColor uvBarColor = ofColor(10, 250, 25);
     
     string name;
     float amp;
@@ -73,7 +79,7 @@ void ofApp::drawInstrument(const Instrument* instrument, int x, int y){
     ofSetColor(uvBgColor);
     ofRect(x+10, y+30, uvWidth, uvHeight);
     
-    ofSetColor(10, 250, 25);
+    ofSetColor(uvBarColor);
     ofRect(x+10, y+30, amp * uvWidth, uvHeight);
     
     ofSetColor(0);
@@ -83,7 +89,7 @@ void ofApp::drawInstrument(const Instrument* instrument, int x, int y){
     ofSetColor(uvBgColor);
     ofRect(x+10, y+55, uvWidth, uvHeight);
     
-    ofSetColor(10, 250, 25);
+    ofSetColor(uvBarColor);
     ofRect(x+10, y+55, percenatge * uvWidth, uvHeight);
     
     ofSetColor(0);
@@ -93,11 +99,65 @@ void ofApp::drawInstrument(const Instrument* instrument, int x, int y){
     ofSetColor(uvBgColor);
     ofRect(x+10, y+80, uvWidth, uvHeight);
     
-    ofSetColor(10, 250, 25);
+    ofSetColor(uvBarColor);
     ofRect(x+10, y+80, ofMap(pan,0.0,1.0,-(uvWidth/2),uvWidth/2), uvHeight);
 
     ofSetColor(0);
     ofDrawBitmapString("Pan", x+(uvWidth/2)+3, y+95);
+}
+
+//--------------------------------------------------------------
+void ofApp::drawPlayheads(int x, int y){
+    int w = 150; // Width of module UI
+    int h = 235; // Height of module UI
+    
+    int uvWidth = 130; // Width of UV meter
+    int uvHeight = 20; // Height of UV meter
+    
+    int initOffset = 33;
+    int offsetMultiplier = 25;
+    
+    ofColor uvBgColor = ofColor(ofColor::lightGoldenRodYellow);
+    ofColor uvBarColor = ofColor(10, 250, 25);
+    
+    string name;
+    float time = ofGetElapsedTimef()*0.1;
+
+    vector<string> playheads;
+    playheads.push_back("Song");
+    playheads.push_back("Part");
+    playheads.push_back("Segment");
+    playheads.push_back("Bar");
+    playheads.push_back("Minim");
+    playheads.push_back("Beat");
+    playheads.push_back("Quaver");
+    playheads.push_back("SemiQuaver");
+    playheads.push_back("TotalMeasures");
+
+    // Draw a rectangular UI
+    ofSetColor(255,100,0);
+    ofNoFill();
+    ofRect(x,y,w,h);
+    ofFill();
+    
+    // Print the name of the Instrument
+    ofSetColor(255);
+    ofDrawBitmapString("PLAYHEADS", x+(uvWidth/2)-25, y+17);
+    
+    //------------------------------------------------ Draw a spacer
+    ofSetColor(255,100,0);
+    ofLine(x, y+25, x+w, y+25);
+    
+    for(int i = 0; i < jenState.getPlayheads().size(); i++){
+        ofSetColor(uvBgColor);
+        ofRect(x+10, y+initOffset+(offsetMultiplier*i), uvWidth, uvHeight);
+        
+        ofSetColor(uvBarColor);
+        ofRect(x+10, y+initOffset+(offsetMultiplier*i), fmod(uvWidth * (time*(1+pow(i,2.0))),uvWidth), uvHeight);
+
+        ofSetColor(0);
+        ofDrawBitmapString(playheads[i], x+35, y+(initOffset+15)+(offsetMultiplier*i));
+    }
 }
 
 //--------------------------------------------------------------
@@ -106,13 +166,9 @@ void ofApp::draw(){
     ofBackgroundGradient(ofColor::black, ofColor::white, OF_GRADIENT_LINEAR);
 
     vector<const Instrument*> kicks;
-
-   // Instrument myKick = Instrument(Kick, "KICK", 1000);
     myKick.pan = 1.0+sin(ofGetElapsedTimef())*0.5;
     myKick.amp = 0.9;
-    const Instrument myACTUALKick = myKick;
-    const Instrument* myKickPtr = &myACTUALKick;
-    
+    const Instrument* myKickPtr = &myKick;
     kicks.push_back(myKickPtr);
     
 
@@ -120,7 +176,7 @@ void ofApp::draw(){
         drawInstrument(kicks.at(0), 100+(i*100), 100);
     }
     
-   // drawBitch(kicks.at(0));
+    drawPlayheads(400, 100);
 }
 
 //--------------------------------------------------------------

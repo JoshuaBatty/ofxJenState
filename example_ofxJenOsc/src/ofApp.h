@@ -17,7 +17,10 @@ public:
 	void update();
 	void draw();
     
+    void drawInstrumentsInfo(vector<const Instrument*> instruments);
     void drawInstrument(const Instrument* instrument, int x, int y);
+    
+    void drawPlayheads(int x, int y);
 
 	void keyPressed(int key);
 	void keyReleased(int key);
@@ -32,5 +35,5 @@ public:
     State jenState;
     
     Instrument myKick;
-
+    Measure myDurations;
 };
