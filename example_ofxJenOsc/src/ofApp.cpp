@@ -3,6 +3,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+
 }
 
 //--------------------------------------------------------------
@@ -33,12 +34,14 @@ void ofApp::update(){
 }
 
 //--------------------------------------------------------------
-void drawInstrument(const Instrument* instrument, int x, int y){
+void ofApp::drawInstrument(const Instrument* instrument, int x, int y){
     int w = 150; // Width of module UI
-    int h = 100; // Height of module UI
+    int h = 105; // Height of module UI
     
-    int uvWidth = 120; // Width of UV meter
-    int uvHeight = 30; // Height of UV meter
+    int uvWidth = 130; // Width of UV meter
+    int uvHeight = 20; // Height of UV meter
+    
+    ofColor uvBgColor = ofColor(ofColor::lightBlue);
     
     string name;
     float amp;
@@ -53,73 +56,71 @@ void drawInstrument(const Instrument* instrument, int x, int y){
     
     
     // Draw a rectangular UI
-    ofSetColor(255,90,0);
+    ofSetColor(255,100,0);
+    ofNoFill();
     ofRect(x,y,w,h);
+    ofFill();
     
     // Print the name of the Instrument
     ofSetColor(255);
-    ofDrawBitmapString(name, x + (x-w)/2, y+10);
+    ofDrawBitmapString(name, x+(uvWidth/2), y+17);
     
     //------------------------------------------------ Draw a spacer
-    ofSetColor(100, 40, 190);
-    ofLine(x, y+15, w, y+15);
+    ofSetColor(255,100,0);
+    ofLine(x, y+25, x+w, y+25);
     
-    // Draw an amplitude meter
-    ofSetColor(255);
-    ofDrawBitmapString("Volume", x+10, y+35);
-    
-    ofSetColor(40, 50, 255);
-    ofRect(x+20, y+40, uvWidth, uvHeight);
+    //------------------------------------------------ Draw an amplitude meter
+    ofSetColor(uvBgColor);
+    ofRect(x+10, y+30, uvWidth, uvHeight);
     
     ofSetColor(10, 250, 25);
-    ofRect(x+20, y+40, amp * uvWidth, uvHeight);
+    ofRect(x+10, y+30, amp * uvWidth, uvHeight);
     
-    //------------------------------------------------ Draw a spacer
-    ofSetColor(100, 40, 190);
-    ofLine(x, y+75, w, y+75);
+    ofSetColor(0);
+    ofDrawBitmapString("Volume", x+(uvWidth/2)-8, y+45);
     
-    // Draw a percentage meter
-    ofSetColor(255);
-    ofDrawBitmapString("Perc", x+10, y+95);
-    
-    ofSetColor(40, 50, 255);
-    ofRect(x+20, y+100, uvWidth, uvHeight);
+    //------------------------------------------------ Draw a percentage meter
+    ofSetColor(uvBgColor);
+    ofRect(x+10, y+55, uvWidth, uvHeight);
     
     ofSetColor(10, 250, 25);
-    ofRect(x+20, y+100, percenatge * uvWidth, uvHeight);
+    ofRect(x+10, y+55, percenatge * uvWidth, uvHeight);
     
-    //------------------------------------------------ Draw a spacer
-    ofSetColor(100, 40, 190);
-    ofLine(x, y+115, w, y+115);
+    ofSetColor(0);
+    ofDrawBitmapString("Perc", x+(uvWidth/2), y+70);
     
-    // Draw a pan position meter
-    ofSetColor(255);
-    ofDrawBitmapString("Pan", x+10, y+125);
-    
-    ofSetColor(40, 50, 255);
-    ofRect(x+20, y+125, uvWidth, uvHeight);
+    //------------------------------------------------ Draw a pan position meter
+    ofSetColor(uvBgColor);
+    ofRect(x+10, y+80, uvWidth, uvHeight);
     
     ofSetColor(10, 250, 25);
-    ofRect(x+20, y+125, ofMap(pan,0.0,1.0,-(uvWidth/2),uvWidth/2), uvHeight);
+    ofRect(x+10, y+80, ofMap(pan,0.0,1.0,-(uvWidth/2),uvWidth/2), uvHeight);
+
+    ofSetColor(0);
+    ofDrawBitmapString("Pan", x+(uvWidth/2)+3, y+95);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
+    ofBackgroundGradient(ofColor::black, ofColor::white, OF_GRADIENT_LINEAR);
+
     vector<const Instrument*> kicks;
 
    // Instrument myKick = Instrument(Kick, "KICK", 1000);
-    myKick.pan = 0.0;
+    myKick.pan = 1.0+sin(ofGetElapsedTimef())*0.5;
     myKick.amp = 0.9;
     const Instrument myACTUALKick = myKick;
     const Instrument* myKickPtr = &myACTUALKick;
     
-    //kicks.push_back(myKickPtr);
+    kicks.push_back(myKickPtr);
     
 
     for(int i=0; i < kicks.size(); i++) {
-        drawInstrument(kicks.at(0), 100+(10*100), 100);
+        drawInstrument(kicks.at(0), 100+(i*100), 100);
     }
+    
+   // drawBitch(kicks.at(0));
 }
 
 //--------------------------------------------------------------

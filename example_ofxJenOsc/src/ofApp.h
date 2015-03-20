@@ -10,7 +10,7 @@ class ofApp : public ofBaseApp{
 public:
 
     ofApp():
-    myKick(Kick, "KICK", 1000)
+    myKick(Kick, "KICK", 10000)
     {}
 
 	void setup();
