@@ -121,7 +121,7 @@ void ofApp::drawPlayheads(int x, int y){
     ofColor uvBarColor = ofColor(10, 250, 25);
     
     string name;
-    float time = ofGetElapsedTimef()*0.1;
+    float time = ofGetElapsedTimef()*0.07;
 
     vector<string> playheads;
     playheads.push_back("Song");

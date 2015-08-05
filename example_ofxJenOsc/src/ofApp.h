@@ -1,9 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxJenOscState.h"
+#include "ofxJenState.h"
 
-using namespace ofxJenOsc;
+using namespace ofxJenState;
 
 class ofApp : public ofBaseApp{
     
