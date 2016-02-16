@@ -1,4 +1,4 @@
-//
+ //
 //  ofxJenOscState.cpp
 //  example_ofxJenOsc
 //
@@ -22,6 +22,12 @@ void State::update() {
 
     // Pull in new messages from OSC
     osc_receiver.update();
+    
+    /// ------ TEMP ABLETON
+    busses.busses[0].params[0] = osc_receiver.drums;
+    busses.busses[1].params[0] = osc_receiver.bass;
+    busses.busses[2].params[0] = osc_receiver.melody;
+    busses.busses[3].params[0] = osc_receiver.atmos;
     
     // Check for new received string.
     if (!osc_receiver.hasUpdated) {
@@ -148,6 +154,7 @@ void State::update() {
 //    cout << "MASTER RMS = " << masterRmsString << endl;
     
   //  receiver.hasUpdated = false;
+    
 }
 
 //--------------------------------------------------------------
@@ -181,7 +188,7 @@ void State::parseNote(string s){
 //--------------------------------------------------------------
 // s is something like "(Chordal, 4): (0.028520431, 0)"
 void State::parseInstrument(string s){
-    cout << "inst s = " << s << endl;
+    //cout << "inst s = " << s << endl;
 
     int rms_pos = s.find("(", 2) + 1; // 0.028520431, 0)
     int first_comma = s.find(",");
@@ -270,6 +277,20 @@ void OSC_Receiver::update(){
             stateString = m.getArgAsString(0);
             hasUpdated = true;
         }
+        // ABLETON SET
+        if(m.getAddress() == "/drums"){
+            drums = m.getArgAsFloat(0);
+        }
+        if(m.getAddress() == "/bass"){
+            bass = m.getArgAsFloat(0);
+        }
+        if(m.getAddress() == "/melody"){
+            melody = m.getArgAsFloat(0);
+        }
+        if(m.getAddress() == "/atmos"){
+            atmos = m.getArgAsFloat(0);
+        }
+        //hasUpdated = true;
     }
 }
 ////--------------------------------------------------------------

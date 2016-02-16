@@ -187,6 +187,9 @@ namespace ofxJenState {
         int OSC_PORT;
         string stateString;
         bool hasUpdated;
+        
+        /// ------ TEMP ABLETON
+        float drums, bass, melody, atmos;
     };
     
 
