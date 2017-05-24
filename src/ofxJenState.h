@@ -14,6 +14,11 @@
 #include "ofxOsc.h"
 #include "Modulator.h"
 
+// Cereal includes
+//#include "cereal.hpp"
+//#include "json.hpp"
+//#include "map.hpp"
+
 namespace ofxJenState {
 
     /// Represents the different type of musical durations within Jen.
@@ -190,6 +195,7 @@ namespace ofxJenState {
         
         /// ------ TEMP ABLETON
         float drums, bass, melody, atmos;
+        float semi_quaver, quaver, beat, minim, bar, segment, phrase;
     };
     
 
